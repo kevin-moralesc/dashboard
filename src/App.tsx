@@ -1,20 +1,21 @@
+import { useState } from 'react';
 import './App.css';
 import { Grid } from '@mui/material';
 import HeaderUI from './components/HeaderUI';
 import AlertUI from './components/AlertUI';
-
+import SelectorUI from './components/SelectorUI';
 
 function App() {
+  const [cityInput, setCityInput] = useState(''); 
+
   return (
     <Grid container spacing={5} sx={{ justifyContent: 'center', alignItems: 'center' }}>
 
       {/* Encabezado */}
       <Grid size={{ xs: 12, md: 12 }}>
-                <HeaderUI />
-            </Grid>
+        <HeaderUI />
+      </Grid>
 
-      {/* Alertas */}
-      
       {/* Alertas */}
       <Grid size={{ xs: 12, md: 12 }} container sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
         Elemento: Alertas
@@ -22,10 +23,14 @@ function App() {
       </Grid>
 
       {/* Selector */}
-      <Grid size={{ xs: 12, md: 3 }}>Elemento: Selector</Grid>
+      <Grid size={{ xs: 12, md: 3 }}> 
+        <SelectorUI cityInput={cityInput} setCityInput={setCityInput} />
+      </Grid>
 
       {/* Indicadores */}
-      <Grid size={{ xs: 12, md: 9 }}>Elemento: Indicadores</Grid>
+      <Grid size={{ xs: 12, md: 9 }}>
+        Elemento: Indicadores {cityInput && `(${cityInput})`}
+      </Grid>
 
       {/* Gráfico */}
       <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: 'none', md: 'block' } }}>
