@@ -3,6 +3,11 @@ import InputLabel from '@mui/material/InputLabel';
 import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+interface SelectorUIProps {
+    cityInput: string;
+    setCityInput: (city: string) => void;
+}
+    
 export default function SelectorUI({ cityInput, setCityInput }: SelectorUIProps) {
 
     const handleChange = (event: SelectChangeEvent<string>) => {
