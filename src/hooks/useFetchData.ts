@@ -45,4 +45,3 @@ export default function useFetchData(selectedOption: string | null): FetchDataOu
     }, [selectedOption]); // El efecto se ejecuta cada vez que cambia la opción seleccionada
 
     return { data, loading, error };
-}
