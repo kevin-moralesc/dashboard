@@ -1,5 +1,6 @@
+
 import { useEffect, useState } from 'react';
-import { type OpenMeteoResponse } from '../types/DashboardTypes';
+import { type Root } from '../types/DashboardTypes';
 
 const CITY_COORDS: Record<string, { latitude: number; longitude: number }> = {
     guayaquil: { latitude: -2.1962, longitude: -79.8862 },
@@ -9,14 +10,14 @@ const CITY_COORDS: Record<string, { latitude: number; longitude: number }> = {
 };
 
 interface FetchDataOutput {
-    data: OpenMeteoResponse | null;
+    data: Root | null;
     loading: boolean;
     error: string | null;
 }
 
 export default function useFetchData(selectedOption: string | null): FetchDataOutput {
 
-    const [data, setData] = useState<OpenMeteoResponse | null>(null);
+    const [data, setData] = useState<Root | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +33,7 @@ export default function useFetchData(selectedOption: string | null): FetchDataOu
                 if (!respuesta.ok) {
                     throw new Error(`Error ${respuesta.status} al consultar Open-Meteo`);
                 }
-                const json: OpenMeteoResponse = await respuesta.json();
+                const json: Root = await respuesta.json();
                 setData(json);
             } catch (e) {
                 setError((e as Error).message);
@@ -42,7 +43,7 @@ export default function useFetchData(selectedOption: string | null): FetchDataOu
         };
 
         obtenerDatos();
-    }, [selectedOption]); // El efecto se ejecuta cada vez que cambia la opción seleccionada
+    }, [selectedOption]);
 
     return { data, loading, error };
 }
